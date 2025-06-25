@@ -2,10 +2,6 @@
     <h3 style="text-align: center;" class="orange-text">Registrasi!</h3>
     <form method="POST">
         <div class="input_field">
-            <label for="no">No</label>
-            <input id="no" type="number" name="no" required>
-        </div>
-        <div class="input_field">
             <label for="nik">NIK</label>
             <input id="nik" type="text" name="nik" required>
         </div>
@@ -32,9 +28,9 @@
 <?php
 if (isset($_POST['register'])) {
     // koneksi ke database
-    include 'koneksi.php';
+    include 'conn/koneksi.php';
 
-    $no = mysqli_real_escape_string($koneksi, $_POST['no']);
+
     $nik = mysqli_real_escape_string($koneksi, $_POST['nik']);
     $nama = mysqli_real_escape_string($koneksi, $_POST['nama']);
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
@@ -42,11 +38,11 @@ if (isset($_POST['register'])) {
     $password = mysqli_real_escape_string($koneksi, md5($_POST['password']));
 
     // simpan ke tabel masyarakat (bisa disesuaikan)
-    $query = "INSERT INTO masyarakat (id, nik, nama, username, telp, password) 
-              VALUES ('$no', '$nik', '$nama', '$username', '$telp', '$password')";
+    $query = "INSERT INTO masyarakat (nik, nama, username, telp, password) 
+              VALUES ('$nik', '$nama', '$username', '$telp', '$password')";
 
     if (mysqli_query($koneksi, $query)) {
-        echo "<script>alert('Registrasi berhasil! Silakan login.'); window.location='login.php';</script>";
+        echo "<script>alert('Registrasi berhasil! Silakan login.'); window.location='index.php?p=login';</script>";
     } else {
         echo "<script>alert('Registrasi gagal!');</script>";
     }
