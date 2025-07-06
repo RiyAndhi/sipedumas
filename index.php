@@ -1,43 +1,50 @@
+<?php
+  session_start();
+  include 'conn/koneksi.php';
+?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-	<title>Aplikasi Pengaduan Masyarakat</title>
-	<link rel="shortcut icon" href="https://cepatpilih.com/image/logo.png">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-	<link href="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<!-- ICONS -->
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sipedumas</title>
+  <link rel="icon" href="img/logo.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style1.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1e88e5">
 </head>
-<body style="background: url(img/bg.jpg); background-size: cover;">
+<body>
+  <div class="wrapper">
+    <?php 
+      $page = @$_GET['p'];
 
-	<div class="container">
-		
-
-	<?php 
-		include 'conn/koneksi.php';
-		if(@$_GET['p']==""){
-			include_once 'landing.php';
-		}
-		elseif(@$_GET['p']=="login"){
-			include_once 'login.php';
-		}
-		elseif(@$_GET['p']=="register"){
-			include_once 'register.php';
-		}
-		elseif(@$_GET['p']=="logout"){
-			include_once 'logout.php';
-		}
-	 ?>
-
-	</div>
+      if ($page == "") {
+        include 'splashscreen.php';
+      } 
+      elseif ($page == "login") {
+        include_once 'login.php';
+      }
+      elseif ($page == "loginadminpetugas") {
+        include_once 'loginadminpetugas.php';
+      }
+      elseif ($page == "register") {
+        include_once 'register.php';
+      }
+      elseif ($page == "logout") {
+        include_once 'logout.php';
+      }
+      else {
+        echo "<p style='text-align:center; color:red;'>Halaman tidak ditemukan.</p>";
+      }
+    ?>
+  </div>
 </body>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service Worker registered!', reg))
+      .catch(err => console.error('Service Worker registration failed:', err));
+  }
+</script>
 </html>

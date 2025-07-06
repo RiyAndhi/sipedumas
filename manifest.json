@@ -1,0 +1,14 @@
+{
+  "name": "Sipedumas",
+  "short_name": "Sipedumas",
+  "start_url": "index.php",
+  "display": "standalone",
+  "theme_color": "#1e88e5",
+  "icons": [
+    {
+      "src": "img/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
